@@ -1,0 +1,34 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+# Initialize a list to store the headlines
+all_headlines = []
+
+# Loop through the first 5 pages (you can adjust the range as needed)
+for page_number in range(1, 30):
+    # Define the URL of the page
+    url = f'https://www.dailyfx.com/market-news/articles?page={page_number}'
+
+    # Send an HTTP GET request to the URL
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the HTML content of the page using BeautifulSoup
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Find the HTML elements that contain the news headlines
+        headlines = soup.find_all('span', class_='dfx-articleListItem__title jsdfx-articleListItem__title font-weight-bold align-middle')
+
+        # Extract and append the headlines to the all_headlines list
+        for headline in headlines:
+            all_headlines.append(headline.text.strip())
+
+# Create a DataFrame to store the data
+df = pd.DataFrame({'Headlines': all_headlines})
+
+# Save the DataFrame to a CSV file
+df.to_csv('dailyfx_headlines2.csv', index=False)
+
+print('Data has been scraped and saved to dailyfx_headlines.csv.')
