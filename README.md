@@ -153,9 +153,3 @@ Some possible extensions:
 - Add additional evaluation metrics (macro/micro F1, per-class precision/recall) to deepen the statistical analysis.
 - Experiment with alternative models such as logistic regression, random forests, or gradient boosting.
 - Apply the same workflow to other financial instruments or asset classes by changing the dataset.
-
-For an MS-level, statistics-oriented discussion, you can emphasize:
-
-- The choice of TF–IDF as a simple, interpretable feature extraction method for sparse text data.
-- The SVM with linear kernel as a maximum-margin classifier in a high-dimensional feature space.
-- The use of hold-out validation (train/test split) and confusion matrices as basic tools for assessing out-of-sample performance and class imbalance effects.
